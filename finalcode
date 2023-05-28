@@ -1,0 +1,42 @@
+#!/bin/bash
+
+echo "What is your name?"
+read name
+
+echo "What is your age?"
+read age
+
+echo "Are you single? (y/n)"
+read single
+
+if [ "$single" == "y" ]; then
+    echo "Then we have someone to introduce you to!"
+    echo "Are you interested in males, females, or both?"
+    read gender_preference
+
+    if [ "$gender_preference" == "males" ]; then
+        echo "Here are 5 random male names:"
+        shuf -n 5 /usr/share/dict/american-male | tr '\n' ', '
+        echo ""
+    elif [ "$gender_preference" == "females" ]; then
+        echo "Here are 5 random female names:"
+        shuf -n 5 /usr/share/dict/american-female | tr '\n' ', '
+        echo ""
+    elif [ "$gender_preference" == "both" ]; then
+        echo "Here are 5 random unisex names:"
+        shuf -n 5 /usr/share/dict/american-unisex | tr '\n' ', '
+        echo ""
+    else
+        echo "Then you are a hard customer to satisfy!"
+    fi
+fi
+
+echo"Your name is $name, your age is $age, and you are single: $single."
+if [ "$single" == "y" ]; then
+    echo "Your gender preference is: $gender_preference."
+fi
+
+# Append the name, age, single status, and gender preference to the file
+echo "$name $age $single $gender_preference" >> names_and_ages.txt
+
+Note that this script assumes that the system has dictionary files of American male, female, and unisex names at `/usr/share/dict/american-male`, `/usr/share/dict/american-female`, and `/usr/share/dict/american-unisex`, respectively. If these files do not exist on your system, you may need to modify the script to use a different source for names.
