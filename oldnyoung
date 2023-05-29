@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo "What is your name?"
+read name
+
+echo "What is your age?"
+read age
+
+if [ "$age" -lt 16 ]; then
+    echo "We're sorry, but we can't serve you without your parent's consent."
+elif [ "$age" -gt 50 ]; then
+    echo "We do have names for you, but unfortunately some names may have expired."
+else
+    echo "Are you single? (y/n)"
+    read single
+
+    if [ "$single" == "y" ]; then
+        echo "Then we have someone to introduce you to!"
+        echo "Are you interested in males, females, or both?"
+        read gender_preference
+
+        if [ "$gender_preference" == "males" ]; then
+            echo "Here are 5 random male names:"
+            shuf -n 5 /usr/share/dict/american-male | tr '\n' ', '
+            echo ""
+        elif [ "$gender_preference" == "females" ]; then
+            echo "Here are 5 random female names:"
+            shuf -n 5 /usr/share/dict/american-female | tr '\n' ', '
+            echo ""
+        elif [ "$gender_preference" == "both" ]; then
+            echo "Here are 5 random unisex names:"
+           Sure, you can modify the script to include an age check by adding an "if" statement after the "age" variable is read from the user. Here's the modified script:
