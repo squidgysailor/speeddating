@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Scrape the internet for top 5 male names
+curl -s https://www.babynamesdirect.com/top-100-baby-names/top-100-boy-names | grep -oP '<td>\K[^<]+' | head -n 5 > malenames.txt
+
+echo "Top 5 male names have been scraped and saved to malenames.txt"
